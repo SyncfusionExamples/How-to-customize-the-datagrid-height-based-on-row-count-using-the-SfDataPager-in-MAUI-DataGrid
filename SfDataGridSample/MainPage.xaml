@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sfDataGrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+            xmlns:sfComboBox="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+            xmlns:sfDataPager="clr-namespace:Syncfusion.Maui.DataGrid.DataPager;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:SfDataGridSample"
+             x:Class="SfDataGridSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:EmployeeViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,Auto">
+        <sfDataGrid:SfDataGrid x:Name="dataGrid" 
+                               Grid.Row="0" 
+                               HeightRequest="550"
+                               ColumnWidthMode="Auto" 
+                               MinimumHeightRequest="0"
+                               GridLinesVisibility="Both"
+                               HeaderGridLinesVisibility="Both"
+                               Loaded="DataGrid_Loaded"
+                               ItemsSource="{Binding Source={x:Reference dataPager}, Path=PagedSource}">
+        </sfDataGrid:SfDataGrid>
+        <StackLayout Margin="10,0" Grid.Row="1"
+                 Orientation="Horizontal"
+                 VerticalOptions="Start">
+            <sfComboBox:SfComboBox  x:Name="comboBox" SelectionChanged="ComboBox_SelectionChanged">
+                <sfComboBox:SfComboBox.ItemsSource>
+                    <x:Array Type="{x:Type x:Int32}">
+                        <x:Int32>5</x:Int32>
+                        <x:Int32>10</x:Int32>
+                        <x:Int32>15</x:Int32>
+                        <x:Int32>20</x:Int32>
+                    </x:Array>
+                </sfComboBox:SfComboBox.ItemsSource>
+
+                <sfComboBox:SfComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding}" 
+                               VerticalTextAlignment="Center" 
+                               Padding="10"
+                               FontSize="16"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </sfComboBox:SfComboBox.ItemTemplate>
+            </sfComboBox:SfComboBox>
+
+            <sfDataPager:SfDataPager   x:Name="dataPager" WidthRequest="600"
+                                   ButtonFontSize="12"
+                                   ButtonSize="24"
+                                   HorizontalOptions="EndAndExpand"
+                                   PageChanged="DataPager_PageChanged"
+                                   PageSize="5"
+                                   Source="{Binding Employees}"
+                                   VerticalOptions="Start" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
