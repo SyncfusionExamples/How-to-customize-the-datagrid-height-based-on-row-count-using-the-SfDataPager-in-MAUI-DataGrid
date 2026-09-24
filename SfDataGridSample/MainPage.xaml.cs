@@ -1,4 +1,4 @@
-﻿using Syncfusion.Maui.DataGrid.DataPager;
+﻿using Syncfusion.Maui.DataPager;
 using Syncfusion.Maui.Inputs;
 
 namespace SfDataGridSample
@@ -11,7 +11,6 @@ namespace SfDataGridSample
             InitializeComponent();
             visualContainer = dataGrid.GetVisualContainer();
         }
-
         private void DataGrid_Loaded(object? sender, EventArgs e)
         {
             dataGrid.HeightRequest = Math.Min(visualContainer.ExtendedHeight, 550);
@@ -19,7 +18,7 @@ namespace SfDataGridSample
 
         private void DataPager_PageChanged(object? sender, PageChangedEventArgs e)
         {
-            dataGrid.HeightRequest = Math.Min(visualContainer.ExtendedHeight,550);            
+            dataGrid.HeightRequest = Math.Min(visualContainer.ExtendedHeight, 550);
         }
 
         private void ComboBox_SelectionChanged(object? sender, Syncfusion.Maui.Inputs.SelectionChangedEventArgs e)
@@ -30,5 +29,4 @@ namespace SfDataGridSample
             }
         }
     }
-
 }
